@@ -39,8 +39,8 @@ if [ ! -f $GHX_BIN/$binary ]; then
 	echo "$binary doesn't exist, installing $repo"
 
 	# alternatives
-	curl -fsSL "https://bina.egoist.dev/$repo?dir=$GHX_BIN" | sh
-	# curl -sSf https://rossmacarthur.github.io/install/crate.sh | bash -s -- --repo "$repo" --to $GHX_BIN
+	# curl -fsSL "https://bina.egoist.dev/$repo?dir=$GHX_BIN" | sh
+	curl -sSf https://rossmacarthur.github.io/install/crate.sh | bash -s -- --repo "$repo" --to $GHX_BIN --bin $binary
 	# cargo binstall --install-path $GHX_BIN --no-track -y $binary
 
 fi
