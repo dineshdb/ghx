@@ -2,7 +2,7 @@
 
 set -e
 
-GHX_HOME=$HOME/.local/ghx
+GHX_HOME=${GHX_HOME:-$HOME/.local/ghx}
 GHX_BIN=$GHX_HOME/bin
 GHX_ALIAS=$GHX_HOME/alias
 GHX_REPO=$GHX_HOME/repo
