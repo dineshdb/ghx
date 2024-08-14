@@ -11,11 +11,13 @@ dotenv-linter,dotenv-linter/dotenv-linter
 dust,bootandy/dust
 fd,sharkdp/fd
 fw,brocode/fw
+git-absorb,tummychow/git-absorb
 git-gone,lunaryorn/git-gone
 grex,pemistahl/grex
 httpie,ducaale/xh
 hx,helix-editor/helix
 hyperfine,sharkdp/hyperfine
+inlyne,Inlyne-Project/inlyne
 jiq,fiatjaf/jiq
 jql,yamafaktory/jql
 just,casey/just
@@ -34,6 +36,7 @@ ruff,astral-sh/ruff
 rune,rune-rs/rune
 rustscan,rustscan/rustscan
 rye,astral-sh/rye
+sccache,mozilla/sccache
 sd,chmln/sd
 sheldon,rossmacarthur/sheldon
 sk,lotabout/skim
