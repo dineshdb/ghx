@@ -1,0 +1,48 @@
+#!/bin/bash
+
+set -e
+
+GHX_HOME=$HOME/.local/ghx
+GHX_BIN=$GHX_HOME/bin
+GHX_ALIAS=$GHX_HOME/alias
+GHX_REPO=$GHX_HOME/repo
+GHX_ALIASMAP=$GHX_REPO/aliasmap.csv
+
+if_not_command() {
+	! [ -x "$(command -v $1)" ] && eval "$2"
+}
+
+mkdir -p $GHX_BIN $GHX_ALIAS
+binary=$(basename $0)
+
+if [ $binary = "ghx" ]; then
+	cp bin/ghx $GHX_ALIAS/ghx
+	cp repo/aliasmap.csv $GHX_ALIASMAP
+
+	while read line; do
+		if ! [ -n "$line" ]; then
+			continue
+		fi
+		cd $GHX_ALIAS
+		IFS=, read -ra array <<<"$line"
+		cmd="${array[0]}"
+		ln -sf ./ghx "$cmd"
+	done <$GHX_ALIASMAP
+	echo "setting up binaries...done."
+	exit 0
+fi
+
+if [ ! -f $GHX_BIN/$binary ]; then
+	line=$(awk -F',' "\$1==\"$binary\"" $GHX_ALIASMAP)
+	IFS=, read -ra array <<<"$line"
+	repo="${array[1]}"
+	echo "$binary doesn't exist, installing $repo"
+
+	# alternatives
+	curl -fsSL "https://bina.egoist.dev/$repo?dir=$GHX_BIN" | sh
+	# curl -sSf https://rossmacarthur.github.io/install/crate.sh | bash -s -- --repo "$repo" --to $GHX_BIN
+	# cargo binstall --install-path $GHX_BIN --no-track -y $binary
+
+fi
+
+$GHX_BIN/$binary "$@"
