@@ -29,6 +29,7 @@ procs,dalance/procs
 pueue,Nukesor/pueue
 rew,jpikl/rew
 rga,phiresky/ripgrep-all
+rg,BurntSushi/ripgrep
 ruff,astral-sh/ruff
 rune,rune-rs/rune
 rustscan,rustscan/rustscan
