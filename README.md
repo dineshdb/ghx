@@ -17,7 +17,7 @@ export PATH=$GHX_HOME/bin:$PATH:$GHX_HOME/alias
 
 ## Features
 
-- [ ] Download the aliasmap from github url
+- [x] Download the aliasmap from github url
 - [ ] Remove need to download/clone the repo to setup.
 - [ ] One line setup.
 
