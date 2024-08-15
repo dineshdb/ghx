@@ -36,8 +36,6 @@ mkdir -p $GHX_BIN $GHX_ALIAS
 binary=$(basename $0)
 
 if [ $binary = "ghx" ]; then
-	cp bin/ghx $GHX_ALIAS/ghx
-
 	while read line; do
 		if ! [ -n "$line" ]; then
 			continue
