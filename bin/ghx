@@ -59,7 +59,7 @@ if [ ! -f $GHX_BIN/$binary ]; then
 
 	# alternatives
 	# curl -fsSL "https://bina.egoist.dev/$repo?dir=$GHX_BIN" | sh
-	curl -sSf https://rossmacarthur.github.io/install/crate.sh | bash -s -- --repo "$repo" --to $GHX_BIN --bin $binary
+	curl -sSf https://raw.githubusercontent.com/dineshdb/ghx/main/bin/get.sh | bash -s -- --repo "$repo" --to $GHX_BIN --bin $binary
 	# cargo binstall --install-path $GHX_BIN --no-track -y $binary
 
 fi
