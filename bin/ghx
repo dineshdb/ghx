@@ -53,12 +53,16 @@ if [ ! -f $GHX_BIN/$binary ]; then
 	line=$(awk -F',' "\$1==\"$binary\"" $GHX_ALIASMAP)
 	IFS=, read -ra array <<<"$line"
 	repo="${array[1]}"
+	if [ -n "$repo"]; then
+		echo "ERROR: We don't package '$binary'!".
+		exit 1
+	fi
+
 	echo "$binary doesn't exist, installing $repo"
 
 	# alternatives
 	# curl -fsSL "https://bina.egoist.dev/$repo?dir=$GHX_BIN" | sh
 	curl -sSf https://raw.githubusercontent.com/dineshdb/ghx/main/bin/get.sh | bash -s -- --repo "$repo" --to $GHX_BIN --bin $binary
-	# cargo binstall --install-path $GHX_BIN --no-track -y $binary
 
 fi
 
