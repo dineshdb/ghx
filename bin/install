@@ -1,0 +1,46 @@
+#!/bin/sh
+
+set -e
+
+GHX_HOME=${GHX_HOME:-$HOME/.local/ghx}
+GHX_BIN=$GHX_HOME/alias/ghx
+
+mkdir -p $GHX_HOME/alias
+
+wget --quiet -O $GHX_BIN https://raw.githubusercontent.com/dineshdb/ghx/main/bin/ghx
+chmod +x $GHX_BIN
+
+setup_path() {
+	# setup $PATH in $HOME/.profile
+	# todo: actually check if it is already being setup in path instead
+	line=$(echo "export PATH=$GHX_HOME/bin:\$PATH:$GHX_HOME/alias")
+	grep -qxF "$line" ~/.profile || echo "$line" >>~/.profile
+}
+
+should_setup_path=false
+
+while getopts ":-:" opt; do
+	case $opt in
+	-)
+		case "${OPTARG}" in
+		setup-path)
+			should_setup_path=true
+			;;
+		*)
+			echo "Invalid option: --$OPTARG"
+			exit 1
+			;;
+		esac
+		;;
+	\?)
+		echo "Usage: install --setup-path"
+		exit 1
+		;;
+	esac
+done
+
+$GHX_BIN
+
+if $should_setup_path; then
+	setup_path
+fi
