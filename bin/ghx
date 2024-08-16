@@ -53,8 +53,8 @@ if [ ! -f $GHX_BIN/$binary ]; then
 	line=$(awk -F',' "\$1==\"$binary\"" $GHX_ALIASMAP)
 	IFS=, read -ra array <<<"$line"
 	repo="${array[1]}"
-	if [ -n "$repo"]; then
-		echo "ERROR: We don't package '$binary'!".
+	if ! [ -n "$repo" ]; then
+		echo "ERROR: We don't package '$binary' $repo!".
 		exit 1
 	fi
 
